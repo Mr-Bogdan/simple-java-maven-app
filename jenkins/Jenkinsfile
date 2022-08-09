@@ -23,6 +23,7 @@ pipeline {
                 sh './jenkins/scripts/deliver.sh'
             }
         }
+    }
     post {
         success {
             slackSend "Build deployed successfully - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
@@ -30,6 +31,5 @@ pipeline {
         failure {
             slackSend failOnError:true, message:"Build failed  - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
         }
-    }
     }
 }
